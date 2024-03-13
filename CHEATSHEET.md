@@ -14,17 +14,6 @@
 |`aws sts get-caller-identity`|get details from the user using the CLI with credentials stored in `~/.aws/credentials`|
 
 ### ec2 commands
-|Commands|Description|
-|--|--|
-|`aws ec2 create-subnet --tag-specification "ResourceType=subnet,Tags=[{Key=Name,Value=<SUBNET_NAME>}]" --vpc-id <VPC_ID> --cidr-block <IP_ADDR>`|create a subnet|
-|`aws ec2 create-route-table --tag-specifications 'ResourceType=route-table,Tags=[{Key=Name,Value=<ROUTE_TABLE_NAME>}] --vpc-id <VPC_ID>'`|create a route table|
-|`aws ec2 associate-route-table --subnet-id <SUBNET_ID> --route-table-id <ROUTE_TABLE_ID>`|associate the route table to the subnet|
-|`aws ec2 create-security-group --group-name <SECURITY_GROUP_NAME> --description <"DESCRIPTION"> --vpc-id <VPC_ID>`|create a security group|
-|`aws ec2 describe-subnets --region <REGION>`|list the subnetworks|
-|`aws ec2 authorize-security-group-ingress --group-id <GROUPE_ID> --protocol <TRANSPORT_PROTOCOL> --port <PORT> --cidr 0.0.0.0/0`|authorize SSH on the VPC|
-|`aws ec2 authorize-security-group-ingress --group-id <GROUPE_ID> --protocol <TRANSPORT_PROTOCOL> --port <PORT> --cidr 0.0.0.0/0`|authorize HTTP on VPC|
-
-### ec2 commands
 
 **Create a ec2 subnet :**
 ```shell
@@ -59,13 +48,13 @@ aws ec2 create-security-group \
 **Describe the subnetworks :**
 ```shell
 aws ec2 describe-subnets \
- --region <REGION>
+--region <REGION>
 ```
 
 **Authorize a service on the VPC (SSH, HTTP, ...) :**
 ```shell
 aws ec2 authorize-security-group-ingress  \
- --group-id <GROUPE_ID> \
+--group-id <GROUPE_ID> \
 --protocol <TRANSPORT_PROTOCOL> \
 --port <SERVICE_PORT> \
 --cidr 0.0.0.0/0
