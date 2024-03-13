@@ -6,12 +6,27 @@
 [AWS documentation](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/index.html)   
 [EC2 documentation](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/ec2/index.html#cli-aws-ec2)
 
-### Global commands
-|Commands|Description|
-|--|--|
-|`aws configure`|creating the credentials which will be stored in the `~/.aws` folder.|
-|`aws configure` subcommands <br> `AWS Access Key ID [None]:` Access key ID <br> `AWS Secret Access Key [None]:` Secret key <br> `Default region name [None]:` eu-west-3 <br> `Default output format [None]:` ? |commands coming after running `aws configure`|
-|`aws sts get-caller-identity`|get details from the user using the CLI with credentials stored in `~/.aws/credentials`|
+### Global aws commands
+
+**Creating the credentials which will be stored in the `~/.aws` folder :**
+```shell
+aws configure
+```
+
+**Commands coming after running `aws configure` :**
+```shell
+`aws configure` subcommands
+<br> `AWS Access Key ID [None]:` Access key ID
+<br> `AWS Secret Access Key [None]:` Secret key
+<br> `Default region name [None]:` eu-west-3
+<br> `Default output format [None]:` ? 
+```
+
+**Get details from the user using the CLI with credentials stored in `~/.aws/credentials` :**
+```shell
+aws sts get-caller-identity
+```
+
 
 ### ec2 commands
 
