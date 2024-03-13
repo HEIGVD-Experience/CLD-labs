@@ -24,6 +24,17 @@
 |`aws ec2 authorize-security-group-ingress --group-id <GROUPE_ID> --protocol <TRANSPORT_PROTOCOL> --port <PORT> --cidr 0.0.0.0/0`|authorize SSH on the VPC|
 |`aws ec2 authorize-security-group-ingress --group-id <GROUPE_ID> --protocol <TRANSPORT_PROTOCOL> --port <PORT> --cidr 0.0.0.0/0`|authorize HTTP on VPC|
 
+### ec2 commands
+
+create a subnet :
+```shell
+aws ec2 create-subnet \
+--tag-specification "ResourceType=subnet,Tags=[{Key=Name,Value=<SUBNET_NAME>}]" \
+--vpc-id <VPC_ID> \
+--cidr-block <IP_ADDR> \
+```
+
+
 ### SSH commands
 |Command|Description|
 |--|--|
