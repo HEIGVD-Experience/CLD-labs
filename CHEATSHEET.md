@@ -13,16 +13,16 @@
 |`aws configure` subcommands <br> `AWS Access Key ID [None]:` Access key ID <br> `AWS Secret Access Key [None]:` Secret key <br> `Default region name [None]:` eu-west-3 <br> `Default output format [None]:` ? |commands coming after running `aws configure`|
 |`aws sts get-caller-identity`|get details from the user using the CLI with credentials stored in `~/.aws/credentials`|
 
-### Network commands
+### ec2 commands
 |Commands|Description|
 |--|--|
-|`aws ec2 create-subnet --tag-specification "ResourceType=subnet,Tags=[{Key=Name,Value=SUB-DEVOPSTEAM09}]" --vpc-id vpc-03d46c285a2af77ba --cidr-block 10.0.9.0/28`|create a subnet|
-|`aws ec2 create-route-table --vpc-id vpc-03d46c285a2af77ba --tag-specifications 'ResourceType=route-table,Tags=[{Key=Name,Value=RTBL-DEVOPSTEAM09}]'`|create a route table|
-|`aws ec2 associate-route-table --subnet-id subnet-0ab19a8e09514f4d1 --route-table-id rtb-0dae377403fef84ef`|associate the route table to the subnet|
-|`aws ec2 create-security-group --group-name SG-DEVOPSTEAM09 --description "SG-DEVOPSTEAM09" --vpc-id vpc-03d46c285a2af77ba`|create a security group|
-|`aws ec2 describe-subnets --region eu-west-3`|list the subnetworks|
-|`aws ec2 authorize-security-group-ingress --group-id sg-037d744a81b23f71d --protocol tcp --port 22 --cidr 0.0.0.0/0`|authorize SSH on the VPC|
-|`aws ec2 authorize-security-group-ingress --group-id sg-037d744a81b23f71d --protocol tcp --port 8080 --cidr 0.0.0.0/0`|authorize HTTP on VPC|
+|`aws ec2 create-subnet --tag-specification "ResourceType=subnet,Tags=[{Key=Name,Value=<SUBNET_NAME>}]" --vpc-id <VPC_ID> --cidr-block <IP_ADDR>`|create a subnet|
+|`aws ec2 create-route-table --tag-specifications 'ResourceType=route-table,Tags=[{Key=Name,Value=<ROUTE_TABLE_NAME>}] --vpc-id <VPC_ID>'`|create a route table|
+|`aws ec2 associate-route-table --subnet-id <SUBNET_ID> --route-table-id <ROUTE_TABLE_ID>`|associate the route table to the subnet|
+|`aws ec2 create-security-group --group-name <SECURITY_GROUP_NAME> --description <"DESCRIPTION"> --vpc-id <VPC_ID>`|create a security group|
+|`aws ec2 describe-subnets --region <REGION>`|list the subnetworks|
+|`aws ec2 authorize-security-group-ingress --group-id <GROUPE_ID> --protocol <TRANSPORT_PROTOCOL> --port <PORT> --cidr 0.0.0.0/0`|authorize SSH on the VPC|
+|`aws ec2 authorize-security-group-ingress --group-id <GROUPE_ID> --protocol <TRANSPORT_PROTOCOL> --port <PORT> --cidr 0.0.0.0/0`|authorize HTTP on VPC|
 
 ### SSH commands
 |Command|Description|
