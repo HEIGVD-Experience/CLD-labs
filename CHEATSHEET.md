@@ -26,14 +26,50 @@
 
 ### ec2 commands
 
-create a subnet :
+**Create a ec2 subnet :**
 ```shell
 aws ec2 create-subnet \
 --tag-specification "ResourceType=subnet,Tags=[{Key=Name,Value=<SUBNET_NAME>}]" \
 --vpc-id <VPC_ID> \
---cidr-block <IP_ADDR> \
+--cidr-block <IP_ADDR> 
 ```
 
+**Create a ec2 route table :**
+```shell
+aws ec2 create-route-table \
+--tag-specifications 'ResourceType=route-table,Tags=[{Key=Name,Value=<ROUTE_TABLE_NAME>}]' \
+--vpc-id <VPC_ID>
+```
+
+**Associate the route table to the subnet :**
+```shell
+aws ec2 associate-route-table \
+--subnet-id <SUBNET_ID> \
+--route-table-id <ROUTE_TABLE_ID>
+```
+
+**Create a security group :**
+```shell
+aws ec2 create-security-group \
+--group-name <SECURITY_GROUP_NAME> \
+--description <"DESCRIPTION"> \
+--vpc-id <VPC_ID>
+```
+
+**Describe the subnetworks :**
+```shell
+aws ec2 describe-subnets \
+ --region <REGION>
+```
+
+**Authorize a service on the VPC (SSH, HTTP, ...) :**
+```shell
+aws ec2 authorize-security-group-ingress  \
+ --group-id <GROUPE_ID> \
+--protocol <TRANSPORT_PROTOCOL> \
+--port <SERVICE_PORT> \
+--cidr 0.0.0.0/0
+```
 
 ### SSH commands
 |Command|Description|
