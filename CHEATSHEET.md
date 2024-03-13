@@ -101,6 +101,19 @@ aws ec2 run-instances \
 
 ### SSH commands
 
+**SSH Config file :**
+```shell
+Host cld_dmz
+    HostName 15.188.43.46
+    IdentityFile ~/.ssh/CLD_KEY_DMZ_DEVOPSTEAM09.pem
+    User devopsteam09
+
+Host cld_drupal
+    HostName 10.0.9.10
+    IdentityFile ~/.ssh/CLD_KEY_DRUPAL_DEVOPSTEAM09.pem
+    User bitnami
+```
+
 **Connect to a server (the default port number is 22) :**
 ```shell
 ssh <USERNAME>@<HOST_IP_ADDR> -i <KEY_PATH> (-p <PORT>)
