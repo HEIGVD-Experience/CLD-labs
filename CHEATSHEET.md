@@ -6,7 +6,7 @@
 [AWS documentation](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/index.html)   
 [EC2 documentation](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/ec2/index.html#cli-aws-ec2)
 
-### Global aws commands
+### AWS global commands
 
 **Creating the credentials which will be stored in the `~/.aws` folder :**
 ```shell
@@ -28,7 +28,7 @@ aws sts get-caller-identity
 ```
 
 
-### ec2 commands
+### AWS ec2 commands
 
 **Create a ec2 subnet :**
 ```shell
