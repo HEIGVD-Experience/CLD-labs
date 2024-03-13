@@ -103,7 +103,7 @@ aws ec2 run-instances \
 
 **Connect to a server (the default port number is 22) :**
 ```shell
-ssh <USERNAME>@<HOST_IP_ADDR> -i <KEY_PATH> (-p <PORT)
+ssh <USERNAME>@<HOST_IP_ADDR> -i <KEY_PATH> (-p <PORT>)
 
 Example:
 ssh devopsteam09@15.188.43.46 -i ~/.ssh/CLD_KEY_DMZ_SSH_CLD_DEVOPSTEAM09.pem
