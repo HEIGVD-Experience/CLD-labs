@@ -75,28 +75,47 @@ aws ec2 authorize-security-group-ingress  \
 --cidr 0.0.0.0/0
 ```
 
+**Create an ec2 instance :**
+```shell
+aws ec2 run-instances \
+--image-id <IMAGE_ID> \
+--count <NB> \
+--instance-type <TYPE> \
+--key-name <INSTANCE_NAME> \
+--private-ip-address <PRIVATE_IP> \
+--security-group-ids <SECURITY_GROUP_ID> \
+--subnet-id <SUBNET_ID> \
+--tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=<NAME>}]"
+
+Example:
+aws ec2 run-instances \
+--image-id ami-00b3a1b7cfab20134 \
+--count 1 \
+--instance-type t3.micro \
+--key-name CLD_KEY_DRUPAL_DEVOPSTEAM09 \
+--private-ip-address 10.0.9.10 \
+--security-group-ids sg-0442609af9e1beac9 \
+--subnet-id subnet-0ad378d360ff015d1 \
+--tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=EC2_PRIVATE_DRUPAL_DEVOPSTEAM09}]"
+```
+
 ### SSH commands
-|Command|Description|
-|--|--|
-|`ssh [username]@[host_ip_address]` |connecting to a server|
-|`ssh devopsteam09@15.188.43.46 -i ~/.ssh/CLD_KEY_DMZ_SSH_CLD_DEVOPSTEAM09.pem`|used command|
-|`ssh [username]@[host_ip_address] -p [port]` |the default port number is 22|
 
+**Connect to a server (the default port number is 22) :**
+```shell
+ssh <USERNAME>@<HOST_IP_ADDR> -i <KEY_PATH> (-p <PORT)
 
-### EC2 commands
-|Command|Description|
-|--|--|
-|aws ec2 run-instances \
- --image-id ami-00b3a1b7cfab20134 \
- --count 1 \
- --instance-type t3.micro \
- --key-name CLD_KEY_DRUPAL_DEVOPSTEAM09 \
- --private-ip-address 10.0.9.10 \
- --security-group-ids sg-0442609af9e1beac9 \
- --subnet-id subnet-0ad378d360ff015d1 \
- --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=EC2_PRIVATE_DRUPAL_DEVOPSTEAM09}]"|create an ec2 instance|
-|`ssh devopsteam09@15.188.43.46 -i ~/.ssh/CLD_KEY_DMZ_SSH_CLD_DEVOPSTEAM09.pem -L 2223:10.0.9.10:22`|connect to the subnet|
-|`ssh -J cld_dmz bitnami@10.0.9.10 -i ~/.ssh/CLD_KEY_DRUPAL_DEVOPSTEAM09.pem`|connect to subnet with ssh|
-|`EC2_PRIVATE_DRUPAL_DEVOPSTEAM09_WEEK03`|creat image|
+Example:
+ssh devopsteam09@15.188.43.46 -i ~/.ssh/CLD_KEY_DMZ_SSH_CLD_DEVOPSTEAM09.pem
+```
+**Connect to the ec2 subnet :**
+```shell
+ssh devopsteam09@15.188.43.46 -i ~/.ssh/CLD_KEY_DMZ_SSH_CLD_DEVOPSTEAM09.pem -L 2223:10.0.9.10:22
+```
+
+**Connect to the ec2 subnet with SSH :**
+```shell
+ssh -J cld_dmz bitnami@10.0.9.10 -i ~/.ssh/CLD_KEY_DRUPAL_DEVOPSTEAM09.pem
+```
 
 
