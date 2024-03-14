@@ -131,4 +131,7 @@ ssh devopsteam09@15.188.43.46 -i ~/.ssh/CLD_KEY_DMZ_SSH_CLD_DEVOPSTEAM09.pem -L 
 ssh -J cld_dmz bitnami@10.0.9.10 -i ~/.ssh/CLD_KEY_DRUPAL_DEVOPSTEAM09.pem
 ```
 
-
+**Map local port 1234 to 10.0.9.10:8080 through SSH in the DMZ**
+```shell
+ssh devopsteam09@15.188.43.46 -i ~/.ssh/CLD_KEY_DMZ_DEVOPSTEAM09.pem -L 2223:10.0.9.10:22 -L 1234:10.0.9.10:8080
+```
