@@ -97,6 +97,15 @@ aws ec2 run-instances \
 --security-group-ids sg-0442609af9e1beac9 \
 --subnet-id subnet-0ad378d360ff015d1 \
 --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=EC2_PRIVATE_DRUPAL_DEVOPSTEAM09}]"
+
+aws ec2 run-instances \
+--tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=EC2_PRIVATE_DRUPAL_DEVOPSTEAM09_A}]" \
+--image-id ami-0cb080a31d62c154d \
+--count 1 \
+--instance-type t3.micro \
+--key-name key-03c12225de23bbbb4 \
+--security-group-ids sg-0026b943cb231d124 \
+--subnet-id subnet-0a8b06840338a7299
 ```
 
 **Delete current subnet :**
@@ -104,6 +113,7 @@ aws ec2 run-instances \
 aws ec2 delete-subnet \
 --subnet-id <SUBNET_ID>
 ```
+
 
 ### SSH commands
 
@@ -141,3 +151,20 @@ ssh -J cld_dmz bitnami@10.0.9.10 -i ~/.ssh/CLD_KEY_DRUPAL_DEVOPSTEAM09.pem
 ```shell
 ssh devopsteam09@15.188.43.46 -i ~/.ssh/CLD_KEY_DMZ_DEVOPSTEAM09.pem -L 2223:10.0.9.10:22 -L 1234:10.0.9.10:8080
 ```
+
+### AWS rds commands
+
+**Create DB subnet group :**
+```shell
+aws rds create-db-subnet-group \
+--db-subnet-group-name <VALUE> \
+--db-subnet-group-description <VALUE> \
+--subnet-ids <VALUE>
+
+Example:
+aws rds create-db-subnet-group \
+--db-subnet-group-name DBSUBGRP-DEVOPSTEAM09 \
+--db-subnet-group-description DBSUBGRP-DEVOPSTEAM09 \ 
+--subnet-ids '["subnet-0a8b06840338a7299","subnet-0f9df600cde330c7d"]'
+```
+
