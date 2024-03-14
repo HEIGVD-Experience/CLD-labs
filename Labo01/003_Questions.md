@@ -18,19 +18,22 @@ TODO
 
     * What's the difference between time here in Switzerland and the time set on
       the machine?
-```
-TODO
-```
+      
+    ```
+    TODO
+    ```
 
     * What's the name of the hypervisor?
-```
-TODO
-```
+    
+    ```
+    TODO
+    ```
 
     * How much free space does the disk have?
-```
-TODO
-```
+    
+    ```
+    TODO
+    ```
 
 
 * Try to ping the instance ssh srv from your local machine. What do you see?
