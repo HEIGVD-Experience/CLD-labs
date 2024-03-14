@@ -99,6 +99,12 @@ aws ec2 run-instances \
 --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=EC2_PRIVATE_DRUPAL_DEVOPSTEAM09}]"
 ```
 
+**Delete current subnet :**
+```shell
+aws ec2 delete-subnet \
+--subnet-id <SUBNET_ID>
+```
+
 ### SSH commands
 
 **SSH Config file :**
