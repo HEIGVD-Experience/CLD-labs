@@ -50,6 +50,7 @@ There is no response with this commmand.
 
 ```sql
 [INPUT]
+mariadb --host dbi-devopsteam09.cshki92s4w5p.eu-west-3.rds.amazonaws.com -u admin -p
 CREATE DATABASE bitnami_drupal;
 ```
 
