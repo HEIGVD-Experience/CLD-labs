@@ -15,8 +15,12 @@ Note : stop the instance before
 
 ```bash
 [INPUT]
+aws ec2 create-image --instance-id i-05f9070d716bcc424 --name AMI_DRUPAL_DEVOPSTEAM09_LABO02_RDS
 
 [OUTPUT]
+{
+    "ImageId": "ami-02047ef71d2ce8153"
+}
 
 ```
 
@@ -33,8 +37,155 @@ Note : stop the instance before
 
 ```bash
 [INPUT]
+aws ec2 run-instances \
+ --image-id ami-02047ef71d2ce8153 \
+ --count 1 \
+ --instance-type t3.micro \
+ --key-name CLD_KEY_DRUPAL_DEVOPSTEAM09 \
+ --private-ip-address 10.0.9.140 \
+ --security-group-ids sg-0442609af9e1beac9 \
+ --subnet-id subnet-0f9df600cde330c7d \
+ --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=EC2_PRIVATE_DRUPAL_DEVOPSTEAM09_B}]"
 
 [OUTPUT]
+Last login: Thu Mar 21 17:53:12 on console
+You have new mail.
+ ~/ aws ec2 create-image --instance-id i-05f9070d716bcc424 --name AMI_DRUPAL_DEVOPSTEAM09_LABO02_RDS
+
+ ~/ 
+ ~/ aws ec2 run-instances \
+ --image-id ami-02047ef71d2ce8153 \
+ --count 1 \
+ --instance-type t3.micro \
+ --key-name CLD_KEY_DRUPAL_DEVOPSTEAM09 \
+ --private-ip-address 10.0.9.140 \
+ --security-group-ids sg-0442609af9e1beac9 \
+ --subnet-id subnet-0f9df600cde330c7d \
+ --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=EC2_PRIVATE_DRUPAL_DEVOPSTEAM09_B}]"
+ 
+[OUTPUT]
+{
+    "Groups": [],
+    "Instances": [
+        {
+            "AmiLaunchIndex": 0,
+            "ImageId": "ami-02047ef71d2ce8153",
+            "InstanceId": "i-0399a7f7ce00690a5",
+            "InstanceType": "t3.micro",
+            "KeyName": "CLD_KEY_DRUPAL_DEVOPSTEAM09",
+            "LaunchTime": "2024-03-21T17:13:20+00:00",
+            "Monitoring": {
+                "State": "disabled"
+            },
+            "Placement": {
+                "AvailabilityZone": "eu-west-3b",
+                "GroupName": "",
+                "Tenancy": "default"
+            },
+            "PrivateDnsName": "ip-10-0-9-140.eu-west-3.compute.internal",
+            "PrivateIpAddress": "10.0.9.140",
+            "ProductCodes": [],
+            "PublicDnsName": "",
+            "State": {
+                "Code": 0,
+                "Name": "pending"
+            },
+            "StateTransitionReason": "",
+            "SubnetId": "subnet-0f9df600cde330c7d",
+            "VpcId": "vpc-03d46c285a2af77ba",
+            "Architecture": "x86_64",
+            "BlockDeviceMappings": [],
+            "ClientToken": "5ddf7099-8bb7-448b-98cc-40df4df0dde8",
+            "EbsOptimized": false,
+            "EnaSupport": true,
+            "Hypervisor": "xen",
+            "NetworkInterfaces": [
+                {
+                    "Attachment": {
+                        "AttachTime": "2024-03-21T17:13:20+00:00",
+                        "AttachmentId": "eni-attach-084764b899fd87fd0",
+                        "DeleteOnTermination": true,
+                        "DeviceIndex": 0,
+                        "Status": "attaching",
+                        "NetworkCardIndex": 0
+                    },
+                    "Description": "",
+                    "Groups": [
+                        {
+                            "GroupName": "SG-PRIVATE-DRUPAL-DEVOPSTEAM09",
+                            "GroupId": "sg-0442609af9e1beac9"
+                        }
+                    ],
+                    "Ipv6Addresses": [],
+                    "MacAddress": "0a:53:8f:a0:55:a5",
+                    "NetworkInterfaceId": "eni-0318cdc7b225226f3",
+                    "OwnerId": "709024702237",
+                    "PrivateIpAddress": "10.0.9.140",
+                    "PrivateIpAddresses": [
+                        {
+                            "Primary": true,
+                            "PrivateIpAddress": "10.0.9.140"
+                        }
+                    ],
+                    "SourceDestCheck": true,
+                    "Status": "in-use",
+                    "SubnetId": "subnet-0f9df600cde330c7d",
+                    "VpcId": "vpc-03d46c285a2af77ba",
+                    "InterfaceType": "interface"
+                }
+            ],
+            "RootDeviceName": "/dev/xvda",
+            "RootDeviceType": "ebs",
+            "SecurityGroups": [
+                {
+                    "GroupName": "SG-PRIVATE-DRUPAL-DEVOPSTEAM09",
+                    "GroupId": "sg-0442609af9e1beac9"
+                }
+            ],
+            "SourceDestCheck": true,
+            "StateReason": {
+                "Code": "pending",
+                "Message": "pending"
+            },
+            "Tags": [
+                {
+                    "Key": "Name",
+                    "Value": "EC2_PRIVATE_DRUPAL_DEVOPSTEAM09_B"
+                }
+            ],
+            "VirtualizationType": "hvm",
+            "CpuOptions": {
+                "CoreCount": 1,
+                "ThreadsPerCore": 2
+            },
+            "CapacityReservationSpecification": {
+                "CapacityReservationPreference": "open"
+            },
+            "MetadataOptions": {
+                "State": "pending",
+                "HttpTokens": "optional",
+                "HttpPutResponseHopLimit": 1,
+                "HttpEndpoint": "enabled",
+                "HttpProtocolIpv6": "disabled",
+                "InstanceMetadataTags": "disabled"
+            },
+            "EnclaveOptions": {
+                "Enabled": false
+            },
+            "PrivateDnsNameOptions": {
+                "HostnameType": "ip-name",
+                "EnableResourceNameDnsARecord": false,
+                "EnableResourceNameDnsAAAARecord": false
+            },
+            "MaintenanceOptions": {
+                "AutoRecovery": "default"
+            },
+            "CurrentInstanceBootMode": "legacy-bios"
+        }
+    ],
+    "OwnerId": "709024702237",
+    "ReservationId": "r-044d2e3295b10cada"
+}
 ```
 
 ## Task 03 - Test the connectivity
