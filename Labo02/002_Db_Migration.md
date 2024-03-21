@@ -10,7 +10,6 @@ In this task you will migrate the Drupal database to the new RDS database instan
 
 ```bash
 [INPUT]
-//help : path /home/bitnami/bitnami_credentials
 cat /home/bitnami/bitnami_credentials | grep "default username and password is"
 
 [OUTPUT]
@@ -60,21 +59,36 @@ Note : you can do this from the Drupal Instance. Do not forget to set the "-h" p
 
 ```sql
 [INPUT]
-mysql -h <rds-end-point> -u <rds_admin_user> -p <db_target> < <pathToDumpFileToImport>.sql
+mariadb --user admin --host dbi-devopsteam09.cshki92s4w5p.eu-west-3.rds.amazonaws.com --password bitnami_drupal < dump.sql
 
 [OUTPUT]
+There is no response with this commmand but you can check if the db is correctly imported by connecting to MariaDB and running :
+use bitnami_drupal
+show tables;
 ```
 
 ### [Get the current Drupal connection string parameters](https://www.drupal.org/docs/8/api/database-api/database-configuration)
 
 ```bash
 [INPUT]
-//help : same settings.php as before
+tail -n 15 /opt/bitnami/drupal/sites/default/settings.php
 
 [OUTPUT]
-//at the end of the file you will find connection string parameters
-//username = bn_drupal
-//password = XXXXXXX
+#   include $app_root . '/' . $site_path . '/settings.local.php';
+# }
+$databases['default']['default'] = array (
+  'database' => 'bitnami_drupal',
+  'username' => 'bn_drupal',
+  'password' => 'not a password',
+  'prefix' => '',
+  'host' => '127.0.0.1',
+  'port' => '3306',
+  'isolation_level' => 'READ COMMITTED',
+  'driver' => 'mysql',
+  'namespace' => 'Drupal\\mysql\\Driver\\Database\\mysql',
+  'autoload' => 'core/modules/mysql/src/Driver/Database/mysql/',
+);
+$settings['config_sync_directory'] = 'sites/default/files/config_NfdayREqv22vTYlQztq93slHghceWLXdoYq3fvTiOWanWWKvNw9-jhJhobONgHDhitEqI1ElnA/sync';
 ```
 
 ### Replace the current host with the RDS FQDN
@@ -82,9 +96,11 @@ mysql -h <rds-end-point> -u <rds_admin_user> -p <db_target> < <pathToDumpFileToI
 ```
 //settings.php
 
+sudo vim /opt/bitnami/drupal/sites/default/settings.php
+
 $databases['default']['default'] = array (
    [...] 
-  'host' => 'dbi-devopsteam99.cshki92s4w5p.eu-west-3.rds.amazonaws.com',
+  'host' => 'dbi-devopsteam09.cshki92s4w5p.eu-west-3.rds.amazonaws.com',
    [...] 
 );
 ```
@@ -98,32 +114,32 @@ Note : only calls from both private subnets must be approved.
 
 ```sql
 [INPUT]
-CREATE USER bn_drupal@'10.0.[XX].0/[Subnet Mask - A]]' IDENTIFIED BY '<Drupal password>';
+CREATE USER bn_drupal@'10.0.9.%' IDENTIFIED BY 'not a password';
 
-GRANT ALL PRIVILEGES ON bitnami_drupal.* TO '<yourNewUser>';
+GRANT ALL PRIVILEGES ON bitnami_drupal.* TO bn_drupal@'10.0.9.%';
 
-//DO NOT FOREGT TO FLUSH PRIVILEGES
+FLUSH PRIVILEGES;
 ```
 
 ```sql
 //validation
 [INPUT]
-SHOW GRANTS for 'bn_drupal'@'10.0.[XX].0/[yourMask]]';
+SHOW GRANTS for 'bn_drupal'@'10.0.9.%';
 
 [OUTPUT]
-+----------------------------------------------------------------------------------------------------------------------------------+
-| Grants for <yourNewUser>                                                                                                         |
-+----------------------------------------------------------------------------------------------------------------------------------+
-| GRANT USAGE ON *.* TO <yourNewUser> IDENTIFIED BY PASSWORD 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'                           |
-| GRANT ALL PRIVILEGES ON `bitnami_drupal`.* TO <yourNewUser>                                                                      |
-+----------------------------------------------------------------------------------------------------------------------------------+
++-----------------------------------------------------------------------------------------------------------------+
+| Grants for bn_drupal@10.0.9.%                                                                                   |
++-----------------------------------------------------------------------------------------------------------------+
+| GRANT USAGE ON *.* TO `bn_drupal`@`10.0.9.%` IDENTIFIED BY PASSWORD 'not a password' |
+| GRANT ALL PRIVILEGES ON `bitnami_drupal`.* TO `bn_drupal`@`10.0.9.%`                                            |
++-----------------------------------------------------------------------------------------------------------------+
 ```
 
 ### Validate access (on the drupal instance)
 
 ```sql
 [INPUT]
-mysql -h dbi-devopsteam[XX].xxxxxxxx.eu-west-3.rds.amazonaws.com -u bn_drupal -p
+mariadb -h dbi-devopsteam09.cshki92s4w5p.eu-west-3.rds.amazonaws.com -u bn_drupal -p
 
 [INPUT]
 show databases;
