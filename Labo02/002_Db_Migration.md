@@ -11,27 +11,39 @@ In this task you will migrate the Drupal database to the new RDS database instan
 ```bash
 [INPUT]
 //help : path /home/bitnami/bitnami_credentials
+cat /home/bitnami/bitnami_credentials | grep "default username and password is"
 
 [OUTPUT]
+The default username and password is 'not the username' and 'not the password'.
 ```
 
 ### Get Database Name of Drupal
 
 ```bash
 [INPUT]
-//add string connection
-
-show databases;
+mariadb -u root -e 'SHOW DATABASES' -p
 
 [OUTPUT]
++--------------------+
+| Database           |
++--------------------+
+| bitnami_drupal     |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
+| test               |
++--------------------+
 ```
 
 ### [Dump Drupal DataBases](https://mariadb.com/kb/en/mariadb-dump/)
 
 ```bash
 [INPUT]
+mariadb-dump -u root -r dump.sql bitnami_drupal -p
 
 [OUTPUT]
+There is no response with this commmand.
 ```
 
 ### Create the new Data base on RDS
