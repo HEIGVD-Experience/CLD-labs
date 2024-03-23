@@ -232,7 +232,7 @@ bitnami@ip-10-0-9-140:~$ curl localhost:8080
 * Observations ?
 
 ```
-//TODO
+The email change on the other instance as we know it communicates with the same database so it works as expected.
 ```
 
 ### Change the profil picture
@@ -240,5 +240,5 @@ bitnami@ip-10-0-9-140:~$ curl localhost:8080
 * Observations ?
 
 ```
-//TODO
+The image dosen't change on the other instance as it's stored in the instance and not in the database.
 ```
