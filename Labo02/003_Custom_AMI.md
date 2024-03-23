@@ -48,16 +48,6 @@ aws ec2 run-instances \
  --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=EC2_PRIVATE_DRUPAL_DEVOPSTEAM09_B}]"
 
 [OUTPUT]
- --image-id ami-02047ef71d2ce8153 \
- --count 1 \
- --instance-type t3.micro \
- --key-name CLD_KEY_DRUPAL_DEVOPSTEAM09 \
- --private-ip-address 10.0.9.140 \
- --security-group-ids sg-0442609af9e1beac9 \
- --subnet-id subnet-0f9df600cde330c7d \
- --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=EC2_PRIVATE_DRUPAL_DEVOPSTEAM09_B}]"
-
-[OUTPUT]
 {
     "Groups": [],
     "Instances": [
@@ -190,28 +180,47 @@ aws ec2 run-instances \
 
 ```bash
 //updated string connection
+ssh -J cld_dmz bitnami@10.0.9.140 -i ~/.ssh/CLD_KEY_DRUPAL_DEVOPSTEAM09.pem
 ```
 
 ## Check SQL Accesses
 
 ```sql
 [INPUT]
-//sql string connection from A
+mariadb --host dbi-devopsteam09.cshki92s4w5p.eu-west-3.rds.amazonaws.com -u admin -p
 
 [OUTPUT]
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 283
+Server version: 10.11.6-MariaDB managed by https://aws.amazon.com/rds/
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 ```
 
 ```sql
 [INPUT]
-//sql string connection from B
+bitnami@ip-10-0-9-140:~$ mariadb --host dbi-devopsteam09.cshki92s4w5p.eu-west-3.rds.amazonaws.com -u admin -p
 
 [OUTPUT]
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 282
+Server version: 10.11.6-MariaDB managed by https://aws.amazon.com/rds/
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> 
 ```
 
 ### Check HTTP Accesses
 
 ```bash
-//connection string updated
+bitnami@ip-10-0-9-140:~$ curl localhost:8080
 ```
 
 ### Read and write test through the web app
