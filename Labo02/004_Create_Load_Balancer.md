@@ -318,12 +318,44 @@ Address: 10.0.9.4
 Help : execute `tcpdump port 8080`
 
 ```
-//TODO
+bitnami@ip-10-0-9-140:~$ sudo tcpdump port 8080
+tcpdump: verbose output suppressed, use -v[v]... for full protocol decode
+listening on ens5, link-type EN10MB (Ethernet), snapshot length 262144 bytes
+14:56:17.680962 IP 10.0.9.4.42598 > 10.0.9.140.http-alt: Flags [S], seq 3043169205, win 26883, options [mss 8961,sackOK,TS val 3489409212 ecr 0,nop,wscale 8], length 0
+14:56:17.680988 IP 10.0.9.140.http-alt > 10.0.9.4.42598: Flags [S.], seq 3615836376, ack 3043169206, win 62643, options [mss 8961,sackOK,TS val 1603475500 ecr 3489409212,nop,wscale 7], length 0
+14:56:17.681941 IP 10.0.9.4.42598 > 10.0.9.140.http-alt: Flags [.], ack 1, win 106, options [nop,nop,TS val 3489409213 ecr 1603475500], length 0
+14:56:17.681966 IP 10.0.9.4.42598 > 10.0.9.140.http-alt: Flags [P.], seq 1:131, ack 1, win 106, options [nop,nop,TS val 3489409213 ecr 1603475500], length 130: HTTP: GET / HTTP/1.1
+14:56:17.681984 IP 10.0.9.140.http-alt > 10.0.9.4.42598: Flags [.], ack 131, win 489, options [nop,nop,TS val 1603475501 ecr 3489409213], length 0
+14:56:17.704503 IP 10.0.9.140.http-alt > 10.0.9.4.42598: Flags [P.], seq 1:5625, ack 131, win 489, options [nop,nop,TS val 1603475523 ecr 3489409213], length 5624: HTTP: HTTP/1.1 200 OK
+14:56:17.704605 IP 10.0.9.140.http-alt > 10.0.9.4.42598: Flags [F.], seq 5625, ack 131, win 489, options [nop,nop,TS val 1603475523 ecr 3489409213], length 0
+14:56:17.705449 IP 10.0.9.4.42598 > 10.0.9.140.http-alt: Flags [.], ack 5625, win 175, options [nop,nop,TS val 3489409236 ecr 1603475523], length 0
+14:56:17.705531 IP 10.0.9.4.42598 > 10.0.9.140.http-alt: Flags [F.], seq 131, ack 5626, win 175, options [nop,nop,TS val 3489409236 ecr 1603475523], length 0
+14:56:17.705538 IP 10.0.9.140.http-alt > 10.0.9.4.42598: Flags [.], ack 132, win 489, options [nop,nop,TS val 1603475524 ecr 3489409236], length 0
+14:56:21.176682 IP 10.0.9.138.25462 > 10.0.9.140.http-alt: Flags [S], seq 221292961, win 26883, options [mss 8961,sackOK,TS val 404465218 ecr 0,nop,wscale 8], length 0
+14:56:21.176711 IP 10.0.9.140.http-alt > 10.0.9.138.25462: Flags [S.], seq 1778857856, ack 221292962, win 62643, options [mss 8961,sackOK,TS val 3314245021 ecr 404465218,nop,wscale 7], length 0
+14:56:21.176882 IP 10.0.9.138.25462 > 10.0.9.140.http-alt: Flags [.], ack 1, win 106, options [nop,nop,TS val 404465218 ecr 3314245021], length 0
+14:56:21.176883 IP 10.0.9.138.25462 > 10.0.9.140.http-alt: Flags [P.], seq 1:131, ack 1, win 106, options [nop,nop,TS val 404465218 ecr 3314245021], length 130: HTTP: GET / HTTP/1.1
+14:56:21.176907 IP 10.0.9.140.http-alt > 10.0.9.138.25462: Flags [.], ack 131, win 489, options [nop,nop,TS val 3314245022 ecr 404465218], length 0
+14:56:21.206854 IP 10.0.9.140.http-alt > 10.0.9.138.25462: Flags [P.], seq 1:5625, ack 131, win 489, options [nop,nop,TS val 3314245052 ecr 404465218], length 5624: HTTP: HTTP/1.1 200 OK
+14:56:21.206924 IP 10.0.9.140.http-alt > 10.0.9.138.25462: Flags [F.], seq 5625, ack 131, win 489, options [nop,nop,TS val 3314245052 ecr 404465218], length 0
+14:56:21.206955 IP 10.0.9.138.25462 > 10.0.9.140.http-alt: Flags [.], ack 5625, win 175, options [nop,nop,TS val 404465248 ecr 3314245052], length 0
+14:56:21.207037 IP 10.0.9.138.25462 > 10.0.9.140.http-alt: Flags [F.], seq 131, ack 5626, win 175, options [nop,nop,TS val 404465248 ecr 3314245052], length 0
+14:56:21.207044 IP 10.0.9.140.http-alt > 10.0.9.138.25462: Flags [.], ack 132, win 489, options [nop,nop,TS val 3314245052 ecr 404465248], length 0
 ```
 
 * In the Apache access log identify the health check accesses from the
   load balancer and copy some samples into the report.
 
 ```
-//TODO
+bitnami@ip-10-0-9-140:~$ tail -n 10 /opt/bitnami/apache2/logs/access_log
+10.0.9.4 - - [28/Mar/2024:14:56:17 +0000] "GET / HTTP/1.1" 200 5149
+10.0.9.138 - - [28/Mar/2024:14:56:21 +0000] "GET / HTTP/1.1" 200 5149
+10.0.9.4 - - [28/Mar/2024:14:56:27 +0000] "GET / HTTP/1.1" 200 5149
+10.0.9.138 - - [28/Mar/2024:14:56:31 +0000] "GET / HTTP/1.1" 200 5149
+10.0.9.4 - - [28/Mar/2024:14:56:37 +0000] "GET / HTTP/1.1" 200 5149
+10.0.9.138 - - [28/Mar/2024:14:56:41 +0000] "GET / HTTP/1.1" 200 5149
+10.0.9.4 - - [28/Mar/2024:14:56:47 +0000] "GET / HTTP/1.1" 200 5149
+10.0.9.138 - - [28/Mar/2024:14:56:51 +0000] "GET / HTTP/1.1" 200 5149
+10.0.9.4 - - [28/Mar/2024:14:56:57 +0000] "GET / HTTP/1.1" 200 5149
+10.0.9.138 - - [28/Mar/2024:14:57:01 +0000] "GET / HTTP/1.1" 200 5149
 ```

@@ -179,7 +179,6 @@ aws ec2 run-instances \
 * add tunnels for ssh and http pointing on the B Instance
 
 ```bash
-//updated string connection
 ssh -J cld_dmz bitnami@10.0.9.140 -i ~/.ssh/CLD_KEY_DRUPAL_DEVOPSTEAM09.pem
 ```
 
