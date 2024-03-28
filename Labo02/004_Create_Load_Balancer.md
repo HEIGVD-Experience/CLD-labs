@@ -257,8 +257,6 @@ aws elbv2 create-listener \
 * Get the ELB FQDN (DNS NAME - A Record)
 
 ```bash
-NEED HELP HERE
-
 [INPUT]
 aws elbv2 describe-load-balancers | \
    jq '.LoadBalancers[] | 
@@ -266,7 +264,7 @@ aws elbv2 describe-load-balancers | \
        .LoadBalancerArn'
 
 [OUTPUT]
-
+"arn:aws:elasticloadbalancing:eu-west-3:709024702237:loadbalancer/app/ELB-DEVOPSTEAM09/4f15812df622c56a"
 ```
 
 * Get the ELB deployment status
