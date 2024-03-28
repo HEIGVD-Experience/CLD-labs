@@ -280,16 +280,18 @@ Note : In the EC2 console select the Target Group. In the
 * Update your string connection to test your ELB and test it
 
 ```bash
-//connection string updated
+aws elbv2 describe-target-health --target-group-arn arn:aws:elasticloadbalancing:eu-west-3:709024702237:targetgroup/TG-DEVOPSTEAM09/2852afb9633e3b23
 ```
 
 * Test your application through your ssh tunneling
 
 ```bash
 [INPUT]
-curl localhost:[local port forwarded]
+ssh devopsteam09@15.188.43.46 -i ~/.ssh/CLD_KEY_DMZ_DEVOPSTEAM09.pem -L 8080:internal-ELB-DEVOPSTEAM09-1659191669.eu-west-3.elb.amazonaws.com:8080 
+Open localhost:8080 in your browser or curl localhost:8080 from another terminal
 
 [OUTPUT]
+The drupal home page.
 
 ```
 
@@ -300,7 +302,15 @@ curl localhost:[local port forwarded]
   the DNS name and the resolved IP Address(es) into the report.
 
 ```
-//TODO
+nslookup internal-ELB-DEVOPSTEAM09-1659191669.eu-west-3.elb.amazonaws.com
+Server:		10.193.64.16
+Address:	10.193.64.16#53
+
+Non-authoritative answer:
+Name:	internal-ELB-DEVOPSTEAM09-1659191669.eu-west-3.elb.amazonaws.com
+Address: 10.0.9.138
+Name:	internal-ELB-DEVOPSTEAM09-1659191669.eu-west-3.elb.amazonaws.com
+Address: 10.0.9.4
 ```
 
 * From your Drupal instance, identify the ip from which requests are sent by the Load Balancer.
