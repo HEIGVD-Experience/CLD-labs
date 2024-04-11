@@ -32,7 +32,14 @@
 
 ```
 [INPUT]
-//cli command
+aws autoscaling create-launch-configuration \
+    --launch-configuration-name LC-DEVOPSTEAM09 \
+    --image-id ami-02047ef71d2ce8153 \
+    --instance-type t3.micro \
+    --security-group-ids sg-0026b943cb231d124 \
+    --subnet-id subnet-0a8b06840338a7299 \
+    --no-associate-public-ip-address \
+    --instance-monitoring Enabled=true \
 
 [OUTPUT]
 ```
@@ -68,7 +75,17 @@
 
 ```
 [INPUT]
-//cli command
+aws autoscaling create-auto-scaling-group \
+    --auto-scaling-group-name ASGRP_DEVOPSTEAM09 \
+    --launch-template LaunchTemplateName=LT-DEVOPSTEAM09 \
+    --min-size 1 \
+    --max-size 4 \
+    --vpc-zone-identifier "subnet-0a8b06840338a7299, subnet-0f9df600cde330c7d" \
+    --traffic-sources Identifier=<LB_ARN>
+    --target-group-arns <TARGET_GROUP_ARN> \
+    --health-check-type ELB \
+    --health-check-grace-period 10 \
+    --tags "Key=Name,Value=AUTO_EC2_PRIVATE_DRUPAL_DEVOPSTEAM09,PropagateAtLaunch=true"
 
 [OUTPUT]
 ```
@@ -82,10 +99,10 @@ Test ssh and web access.
 ```
 [INPUT]
 //ssh login
-
-[OUTPUT]
+ssh devopsteam09@15.188.43.46 -i ~/.ssh/CLD_KEY_DMZ_DEVOPSTEAM09.pem -L 1234:internal-ELB-DEVOPSTEAM09-1756587798.eu-west-3.elb.amazonaws.com:8080[OUTPUT]
 ```
 
 ```
 //screen shot, web access (login)
 ```
+![Webconsole](img/image.png)
