@@ -38,11 +38,13 @@ stress --cpu 2
 [INPUT]
 //Screen shot from cloud watch metric
 ```
+![3](./img/3.png)
 [Sample](./img/CLD_AWS_CLOUDWATCH_CPU_METRICS.PNG)
 
 ```
 //TODO screenshot of ec2 instances list (running state)
 ```
+![5](./img/5.png)
 [Sample](./img/CLD_AWS_EC2_LIST.PNG)
 
 ```
@@ -52,6 +54,8 @@ stress --cpu 2
 
 [OUTPUT]
 ```
+![4](./img/4.png)
+
 
 ```
 //TODO screenshot of the activity history
