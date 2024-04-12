@@ -77,6 +77,7 @@ stress --cpu 2
 ```
 //TODO screenshot from cloud watch metric
 ```
+![7](./img/7.png)
 
 ```
 //TODO screenshot of ec2 instances list (terminated state)
