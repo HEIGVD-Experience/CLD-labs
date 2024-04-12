@@ -82,11 +82,11 @@ stress --cpu 2
 ```
 //TODO screenshot of ec2 instances list (terminated state)
 ```
-
+![8](./img/8.png)
 ```
 //TODO screenshot of the activity history
 ```
-
+![9](./img/9.png)
 ## Release Cloud resources
 
 Once you have completed this lab release the cloud resources to avoid
