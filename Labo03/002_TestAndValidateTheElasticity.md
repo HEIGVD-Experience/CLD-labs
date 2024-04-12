@@ -17,6 +17,8 @@ htop
 
 [OUTPUT]
 ```
+![1](./img/1.png)
+
 
 ### Stress your instance
 
@@ -25,8 +27,9 @@ htop
 stress --cpu 2
 
 [OUTPUT]
-
 ```
+![2](./img/2.png)
+
 
 * (Scale-IN) Observe the autoscaling effect on your infa
 
