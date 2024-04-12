@@ -54,17 +54,19 @@ stress --cpu 2
 
 [OUTPUT]
 ```
-![4](./img/4.png)
+
 
 
 ```
 //TODO screenshot of the activity history
 ```
+![4](./img/4.png)
 [Sample](./img/CLD_AWS_ASG_ACTIVITY_HISTORY.PNG)
 
 ```
 //TODO screenshot of the cloud watch alarm target tracking
 ```
+![6](./img/6.png)
 [Sample](./img/CLD_AWS_CLOUDWATCH_ALARMHIGH_STATS.PNG)
 
 
