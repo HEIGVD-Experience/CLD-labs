@@ -16,18 +16,16 @@
 htop
 
 [OUTPUT]
-//copy the part representing vCPus, RAM and swap usage
 ```
 
 ### Stress your instance
 
 ```
 [INPUT]
-//stress command
+stress --cpu 2
 
 [OUTPUT]
-//copy the part representing vCPus, RAM and swap usage
-//tip : use two ssh sessions....
+
 ```
 
 * (Scale-IN) Observe the autoscaling effect on your infa
