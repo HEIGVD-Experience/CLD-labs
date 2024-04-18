@@ -98,7 +98,6 @@ Test ssh and web access.
 
 ```
 [INPUT]
-//ssh login
 ssh devopsteam09@15.188.43.46 -i ~/.ssh/CLD_KEY_DMZ_DEVOPSTEAM09.pem -L 1234:internal-ELB-DEVOPSTEAM09-1756587798.eu-west-3.elb.amazonaws.com:8080[OUTPUT]
 ```
 
