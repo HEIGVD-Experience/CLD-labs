@@ -80,11 +80,11 @@ To develop and test the Servlet perform the following steps:
    and select **Datastore > Entities**.
 
 Deliverables:
-
 ```
-//TODO - Commit and publish the servlet in your repo, in the 'labo4' directory.
+Here is a screenshot of the local datastore viewer
 ```
-
+![](./SCR-20240425-pish.png)
 ```
-//TODO - Copy a screenshot of the local and the App Engine console with the Datastore Viewer.
+Here is a screenshot of the clouded datastore viewer
 ```
+![](./SCR-20240425-pkje.png)

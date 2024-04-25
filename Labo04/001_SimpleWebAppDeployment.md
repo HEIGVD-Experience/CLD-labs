@@ -56,7 +56,7 @@ Create a simple web application as follows.
    `HelloAppEngine` file. What does the code do?
 
    ```
-   //TODO
+   It print a web page containing multiple informations concerning our machine hosting the service. This is encapsuled into a servlet.
    ```
 
 6. Note the annotation starting with `@WebServlet` in front of the
@@ -66,14 +66,14 @@ Create a simple web application as follows.
    `web.xml`. What information does it contain? And what is its use ?
 
    ```
-   //TODO
+   It configures variables for the wepapp.
    ```
 
 8. Inspect the Google App Engine configuration file
    `appengine-web.xml` in `webapp/WEB-INF`. What information does it contain?
 
    ```
-   //TODO
+   It contains all the runtime config.
    ```
 
 9. Edit the Google App Engine configuration file as follows:
@@ -85,7 +85,7 @@ Create a simple web application as follows.
     `index.jsp` spotted in `web.xml`. What is its use ?
 
     ```
-    //TODO
+    It contains a template which is used for the landing page.
     ```
 
 ---
@@ -156,16 +156,20 @@ Deliverables:
 
   ```
   //TODO Java class files
+  A Servlet which return hello world on the /hello url.
   ```
 
   ```
   //TODO web.xml
+  The web.xml file is used to configure different aspects of the web application, such as servlets, filters, initialization parameters, URL mappings, and so on.
   ```
 
   ```
   //TODO appengine-web.xml
+  The appengine-web.xml file configures the parameters for deploying the application on Google App Engine, including Java version, thread security and system properties.
   ```
 
   ```
   //TODO index.jsp
+  The index.jsp file represent the landing page when you will connect to the URL of your Google web application.
   ```
