@@ -52,14 +52,14 @@ Deliverables:
   vegeta attack -duration=30s -rate=1000 -targets=target.list | tee results-hello.bin | vegeta report
   cat results-hello.bin | vegeta plot --title="My Load Testing" > loadtest-hello.html
   ```
-  ![](vegeta-plot-hello.png)
+  ![](img/vegeta-plot-hello.png)
   ```
   Datawriter servlet
   printf printf "GET https://20240425t154316-dot-rising-hallway-420714.ew.r.appspot.com/datastorewrite?_kind=book&author=Gwen&title=Guillaume" > target.list
   vegeta attack -duration=30s -rate=1000 -targets=target.list | tee results-write.bin | vegeta report
   cat results-write.bin | vegeta plot --title="My Load Testing" > loadtest-write.html
   ```
-  ![](vegeta-plot-write.png)
+  ![](img/vegeta-plot-write.png)
  
 - What response times do you observe for each Servlet?
 
@@ -80,7 +80,7 @@ Deliverables:
   HelloWorld servlet -> avg 4214,174 ms (4,214s)
   Datawriter servlet -> avg 8267.462 ms (8.267s)
 
-  As a small comparaison we could say that the avarage latency is quit similar wheter it comes from Vegeta or from Google Cloud dashboard. The main difference could be made from the fact that from Vegeta you will have to add the time for the request to travel to Google Servers.
+  The average latency seems quite similar whether it originates from Vegeta or from the Google Cloud dashboard. However, the main distinction lies in the additional time required for the request to travel to Google Servers when using Vegeta.
   ```
 
 - How many resources have you used to run these tests? From the
@@ -88,7 +88,7 @@ Deliverables:
   quotas (**Daily quota** different from 0%). Explain each with a sentence.
   To get a sense of everything that is measured click on **Show resources not in use**.
 
-  ![](google-app-quotas.png)
+  ![](img/google-app-quotas.png)
   ```
   1. Cloud Firestore API Calls: This covers the total number of calls made to the Datastore API, including both reads and writes.
   2. Cloud Firestore Stored Data: This indicates the amount of data currently stored in the Cloud Firestore datastore.
@@ -98,11 +98,12 @@ Deliverables:
   6. Cloud Firestore Index Write Ops: This records the number of writes made to the indexes within the Datastore storage, typically one write per indexed column per entity.
   ```
 
-- Let's suppose you become suspicious that the algorithm for the automatic scaling of
-  instances is not working correctly. Imagine a way in which the algorithm could be broken. Which measures shown in the console would you use to detect this failure?
+- Let's suppose you become suspicious that the algorithm for the automatic scaling of instances is not working correctly. Imagine a way in which the algorithm could be broken. Which measures shown in the console would you use to detect this failure?
 
   ```
-  //TODO
+  To identify if the automatic scaling algorithm is malfunctioning, we can monitor the number of running instances. If the instance count fails to adjust correctly in response to incoming requests, it signals algorithm failure. This can be checked in both the App Engine console under the Dashboard and in the Quota Details view by examining the Instances resource.
+
+  The consequences of such failure include the application struggling to manage request loads or consuming resources unnecessarily. These issues would manifest in either response times or resource usage.
   ```
 
 ## Troubleshooting

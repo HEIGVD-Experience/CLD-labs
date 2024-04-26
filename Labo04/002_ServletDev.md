@@ -83,8 +83,8 @@ Deliverables:
 ```
 Here is a screenshot of the local datastore viewer
 ```
-![](./SCR-20240425-pish.png)
+![](img//SCR-20240425-pish.png)
 ```
 Here is a screenshot of the clouded datastore viewer
 ```
-![](./SCR-20240425-pkje.png)
+![](img//SCR-20240425-pkje.png)
