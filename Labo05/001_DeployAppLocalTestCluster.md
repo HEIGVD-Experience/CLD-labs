@@ -295,7 +295,7 @@ spec:
     - containerPort: 8080
     env:
     - name: API_ENDPOINT_URL
-      value: http://api-svc:8080
+      value: http://api-svc:8081
 ```
 
 > [!TIP]
