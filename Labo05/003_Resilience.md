@@ -103,12 +103,102 @@ Document your observations in the lab report. Document any difficulties you face
 
 ```yaml
 # redis-deploy.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-deployment
+  labels:
+    component: redis
+    app: todo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: todo
+      component: redis
+  template:
+    metadata:
+      labels:
+        component: redis
+        app: todo
+    spec:
+      containers:
+      - name: redis
+        image: redis
+        ports:
+        - containerPort: 6379
+        args:
+        - redis-server 
+        - --requirepass ccp2 
+        - --appendonly yes
 ```
 
 ```yaml
 # api-deploy.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-deployment
+  labels:
+    component: api
+    app: todo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: todo
+      component: api
+  template:
+    metadata:
+      labels:
+        component: api
+        app: todo
+    spec:
+      containers:
+      - name: api
+        image: icclabcna/ccp2-k8s-todo-api
+        ports:
+        - containerPort: 8081
+        env:
+        - name: REDIS_ENDPOINT
+          value: redis-svc
+        - name: REDIS_PWD
+          value: ccp2
 ```
 
 ```yaml
 # frontend-deploy.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  labels:
+    component: frontend
+    app: todo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: todo
+      component: frontend
+  template:
+    metadata:
+      labels:
+        component: frontend
+        app: todo
+    spec:
+      containers:
+      - name: frontend
+        image: icclabcna/ccp2-k8s-todo-frontend
+        ports:
+        - containerPort: 8080
+        env:
+        - name: API_ENDPOINT_URL
+          value: http://api-svc:8081
+        resources:
+          requests:
+            cpu: 10m
 ```
