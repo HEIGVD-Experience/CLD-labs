@@ -67,35 +67,6 @@ Document any difficulties you faced and how you overcame them. Copy the object d
 
 > // TODO
 
-```````
-// TODO object descriptions
-kubectl describe service/frontend-svc
-Name:                     frontend-svc
-Namespace:                default
-Labels:                   app=todo
-                          component=frontend
-Annotations:              cloud.google.com/neg: {"ingress":true}
-Selector:                 app=todo,component=frontend
-Type:                     LoadBalancer
-IP Family Policy:         SingleStack
-IP Families:              IPv4
-IP:                       34.118.233.213
-IPs:                      34.118.233.213
-LoadBalancer Ingress:     34.116.180.28
-Port:                     web  80/TCP
-TargetPort:               8080/TCP
-NodePort:                 web  30151/TCP
-Endpoints:                10.12.3.5:8080
-Session Affinity:         None
-External Traffic Policy:  Cluster
-Events:
-  Type    Reason                Age    From                Message
-  ----    ------                ----   ----                -------
-  Normal  EnsuringLoadBalancer  3m20s  service-controller  Ensuring load balancer
-  Normal  EnsuredLoadBalancer   2m40s  service-controller  Ensured load balancer
-
-```````
-
 ```yaml
 # frontend-svc.yaml
 
@@ -125,4 +96,29 @@ Take a screenshot of the cluster details from the GKE console. Copy the output o
 
 ```````
 // TODO object descriptions
+kubectl describe service/frontend-svc
+Name:                     frontend-svc
+Namespace:                default
+Labels:                   app=todo
+                          component=frontend
+Annotations:              cloud.google.com/neg: {"ingress":true}
+Selector:                 app=todo,component=frontend
+Type:                     LoadBalancer
+IP Family Policy:         SingleStack
+IP Families:              IPv4
+IP:                       34.118.233.213
+IPs:                      34.118.233.213
+LoadBalancer Ingress:     34.116.180.28
+Port:                     web  80/TCP
+TargetPort:               8080/TCP
+NodePort:                 web  30151/TCP
+Endpoints:                10.12.3.5:8080
+Session Affinity:         None
+External Traffic Policy:  Cluster
+Events:
+  Type    Reason                Age    From                Message
+  ----    ------                ----   ----                -------
+  Normal  EnsuringLoadBalancer  3m20s  service-controller  Ensuring load balancer
+  Normal  EnsuredLoadBalancer   2m40s  service-controller  Ensured load balancer
+
 ```````
