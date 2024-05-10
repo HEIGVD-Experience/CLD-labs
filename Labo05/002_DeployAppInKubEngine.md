@@ -121,6 +121,8 @@ Take a screenshot of the cluster details from the GKE console. Copy the output o
 
 > // TODO
 
+![img](https://github.com/truebguillaume/CLD-Labs/blob/main/Labo05/img/task02.png)
+
 ```````
 // TODO object descriptions
 ```````
