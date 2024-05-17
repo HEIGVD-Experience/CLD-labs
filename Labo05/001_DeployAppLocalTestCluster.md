@@ -177,7 +177,6 @@ Document any difficulties you faced and how you overcame them. Copy the object d
 
 > // TODO
 
-```````
 // TODO object descriptions
 
 ```yaml
