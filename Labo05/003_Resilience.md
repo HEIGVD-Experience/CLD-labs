@@ -55,12 +55,22 @@ You may also use `kubectl get all` repeatedly to see a list of all resources.  Y
     > `kubectl scale deployment/frontend-deploy --replicas=3`.
     
   * What autoscaling features are available? Which metrics are used?
-
-    > // TODO
+    > Features:    
+    >    `HPA`: Adjusts the number of pod replicas based on metrics like CPU or memory usage.    
+    >    `VPA`: Adjusts CPU and memory requests of pods based on historical usage data.    
+    >    `Cluster Autoscaler`: Adjusts the cluster size by adding or removing nodes based on resource demands.    
+    >    `Custom Metrics Autoscaling`: Uses user-defined metrics (e.g., queue length, request latency) for scaling decisions.
+    >          
+    > Metrics:    
+    >    `CPU Utilization`: Triggers scaling based on CPU usage thresholds.    
+    >    `Memory Utilization`: Triggers scaling based on memory usage thresholds.    
+    >    `Custom Metrics`: User-defined metrics relevant to application performance.    
+    >    `Object Metrics`: Specific to Kubernetes-managed resources, like database items or queue messages.    
     
   * How can you update a component? (see "Updating a Deployment" in the deployment documentation)
 
-    > // TODO
+    > We have to udate the deloyement .yaml file and then run the appy commande     
+    > `kubectl apply -f file.yaml`
 
 ## Subtask 3.3 - Put autoscaling in place and load-test it
 
