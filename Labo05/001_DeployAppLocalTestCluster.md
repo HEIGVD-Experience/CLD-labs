@@ -205,7 +205,7 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: frontendv
+  name: frontend
   labels:
     component: frontend
     app: todo
