@@ -107,7 +107,7 @@ Document your observations in the lab report. Document any difficulties you face
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: redis-deployment
+  name: redis
   labels:
     component: redis
     app: todo
