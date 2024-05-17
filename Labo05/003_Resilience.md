@@ -51,7 +51,7 @@ You may also use `kubectl get all` repeatedly to see a list of all resources.  Y
     
   * How can you change the number of instances temporarily to 3? Hint: look for scaling in the deployment documentation
 
-    > // TODO
+    > We can simply change the value in the .yaml file or by using this commande `kubectl scale deployment/frontend-deploy --replicas=3`.
     
   * What autoscaling features are available? Which metrics are used?
 
