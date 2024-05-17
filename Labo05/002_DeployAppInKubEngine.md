@@ -92,11 +92,12 @@ Take a screenshot of the cluster details from the GKE console. Copy the output o
 
 > // TODO
 
-![img](https://github.com/truebguillaume/CLD-Labs/blob/main/Labo05/img/task02.png)
+![img](https://github.com/truebguillaume/CLD-Labs/blob/main/Labo05/img/cluster.png)
 
 ```````
 // TODO object descriptions
 kubectl describe service/frontend-svc
+
 Name:                     frontend-svc
 Namespace:                default
 Labels:                   app=todo
@@ -106,19 +107,18 @@ Selector:                 app=todo,component=frontend
 Type:                     LoadBalancer
 IP Family Policy:         SingleStack
 IP Families:              IPv4
-IP:                       34.118.233.213
-IPs:                      34.118.233.213
-LoadBalancer Ingress:     34.116.180.28
-Port:                     web  80/TCP
+IP:                       10.23.17.136
+IPs:                      10.23.17.136
+LoadBalancer Ingress:     34.118.30.132
+Port:                     frontend  80/TCP
 TargetPort:               8080/TCP
-NodePort:                 web  30151/TCP
-Endpoints:                10.12.3.5:8080
+NodePort:                 frontend  32276/TCP
+Endpoints:                10.24.0.6:8080
 Session Affinity:         None
 External Traffic Policy:  Cluster
 Events:
-  Type    Reason                Age    From                Message
-  ----    ------                ----   ----                -------
-  Normal  EnsuringLoadBalancer  3m20s  service-controller  Ensuring load balancer
-  Normal  EnsuredLoadBalancer   2m40s  service-controller  Ensured load balancer
-
+  Type    Reason                Age   From                Message
+  ----    ------                ----  ----                -------
+  Normal  EnsuringLoadBalancer  114s  service-controller  Ensuring load balancer
+  Normal  EnsuredLoadBalancer   73s   service-controller  Ensured load balancer
 ```````
