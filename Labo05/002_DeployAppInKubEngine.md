@@ -82,7 +82,7 @@ spec:
   ports:
     - port: 80
       targetPort: 8080
-      name: web
+      name: frontend
   selector:
     app: todo
     component: frontend
