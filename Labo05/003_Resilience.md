@@ -43,7 +43,7 @@ $ kubectl get pods --watch
 You may also use `kubectl get all` repeatedly to see a list of all resources.  You should also verify if the application stays available by continuously reloading your browser window.
 
   * What happens if you delete a Frontend or API Pod? How long does it take for the system to react?
-    > // TODO
+    > The Pod will be terminated, then deleted, and shortly after, another one will be created.
     
   * What happens when you delete the Redis Pod?
 
