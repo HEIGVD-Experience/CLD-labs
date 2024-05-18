@@ -77,6 +77,7 @@ You may also use `kubectl get all` repeatedly to see a list of all resources.  Y
 On the GKE cluster deploy autoscaling on the Frontend with a target CPU utilization of 30% and number of replicas between 1 and 4.     
 > Using this commande :    
 > `kubectl autoscale deployment frontend-deployment --cpu-percent=30 --min=1 --max=4`
+   
 Load-test using Vegeta (500 requests should be enough).
 
 > Using this commande :    
