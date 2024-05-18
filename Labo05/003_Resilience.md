@@ -74,9 +74,22 @@ You may also use `kubectl get all` repeatedly to see a list of all resources.  Y
 
 ## Subtask 3.3 - Put autoscaling in place and load-test it
 
-On the GKE cluster deploy autoscaling on the Frontend with a target CPU utilization of 30% and number of replicas between 1 and 4. 
-
+On the GKE cluster deploy autoscaling on the Frontend with a target CPU utilization of 30% and number of replicas between 1 and 4.     
+> Using this commande :    
+> `kubectl autoscale deployment frontend-deployment --cpu-percent=30 --min=1 --max=4`
 Load-test using Vegeta (500 requests should be enough).
+
+> Using this commande :    
+> `echo "GET http://34.118.45.122" | vegeta attack -duration=1m -rate=500 | vegeta report --type=text`
+```shell
+Requests      [total, rate, throughput]         30000, 500.02, 315.66
+Duration      [total, attack, wait]             1m15s, 59.998s, 14.747s
+Latencies     [min, mean, 50, 90, 95, 99, max]  11.058µs, 732.647ms, 149.654ms, 973.625ms, 2.935s, 11.987s, 30s
+Bytes In      [total, mean]                     14887814, 496.26
+Bytes Out     [total, mean]                     0, 0.00
+Success       [ratio]                           78.65%
+Status Codes  [code:count]                      0:6406  200:23594  
+```
 
 > [!NOTE]
 >
