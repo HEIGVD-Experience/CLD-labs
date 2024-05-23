@@ -72,6 +72,30 @@ You can now initialize the Terraform state:
 //TODO
 [OUTPUT]
 ```bash
+Initializing the backend...
+
+Successfully configured the backend "local"! Terraform will automatically
+use this backend unless the backend configuration changes.
+
+Initializing provider plugins...
+- Finding latest version of hashicorp/google...
+- Installing hashicorp/google v5.30.0...
+- Installed hashicorp/google v5.30.0 (signed by HashiCorp)
+
+Terraform has created a lock file .terraform.lock.hcl to record the provider
+selections it made above. Include this file in your version control repository
+so that Terraform can guarantee to make the same selections by default when
+you run "terraform init" in the future.
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
 ```
     
 * What files were created in the `terraform` directory? Make sure to look also at hidden files and directories (`ls -a`).
@@ -79,6 +103,8 @@ You can now initialize the Terraform state:
 //TODO
 [OUTPUT]
 ```bash
+.                   .DS_Store           .terraform.lock.hcl main.tf             terraform.tfvars
+..                  .terraform          backend.tf          outputs.tf          variables.tf
 ```
 
 * What are they used for?
@@ -86,7 +112,8 @@ You can now initialize the Terraform state:
 //TODO
 |File/FolderName|Explanation|
 |:--|:--|
-|||
+|.terraform | Keep the terraform state and the providers used|
+|.terraform.lock.hcl | Contains the version of the providers used. E.g. hashicorp/google|
 
 
 * Check that your Terraform configuration is valid:
@@ -98,6 +125,7 @@ terraform validate
 //TODO
 [OUTPUT]
 ```bash
+Success! The configuration is valid.
 ```
 
 * Create an execution plan to preview the changes that will be made to your infrastructure and save it locally:
@@ -106,18 +134,10 @@ terraform validate
 terraform plan -input=false -out=.terraform/plan.cache
 ```
 
-```
-//TODO - copy the command result in a file named "planCache.json" and add it to your lab repo.
-```
-
 * If satisfied with your execution plan, apply it:
 
 ```bash
     terraform apply -input=false .terraform/plan.cache
-```
-
-```
-//TODO - copy the command result in a file name "planCacheApplied.txt
 ```
 
 * Test access via ssh
@@ -125,10 +145,39 @@ terraform plan -input=false -out=.terraform/plan.cache
 //TODO
 [INPUT]
 ```bash
+ssh user@34.65.241.126 -i ../credentials/labgce-ssh-key
 ```
 
 [OUTPUT]
 ```
+Welcome to Ubuntu 20.04.6 LTS (GNU/Linux 5.15.0-1060-gcp x86_64)
+
+ * Documentation:  https://help.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Thu May 23 13:55:35 UTC 2024
+
+  System load:  0.02              Processes:             95
+  Usage of /:   19.1% of 9.51GB   Users logged in:       0
+  Memory usage: 34%               IPv4 address for ens4: 10.172.0.2
+  Swap usage:   0%
+
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+
+The programs included with the Ubuntu system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
+applicable law.
 ```
 
 If no errors occur, you have successfully managed to create a VM on Google Cloud using Terraform. You should see the IP of the Google Compute instance in the console. Save the instance IP, it will be used later.
@@ -140,38 +189,32 @@ Deliverables:
 
 * Explain the usage of each provided file and its contents by directly adding comments in the file as needed (we must ensure that you understood what you have done). In the file `variables.tf` fill the missing documentation parts and link to the online documentation. Copy the modified files to the report.
 
-```
-//TODO
-```
-
 * Explain what the files created by Terraform are used for.
-
-```
-//TODO
-```
 
 * Where is the Terraform state saved? Imagine you are working in a team and the other team members want to use Terraform, too, to manage the cloud infrastructure. Do you see any problems with this? Explain.
 
 ```
-//TODO
+The Terraform state is saved in terraform.tfstate.
+
+The issue that could arise is that multiple team members might update the state of the resources simultaneously.
 ```
 
 * What happens if you reapply the configuration (1) without changing `main.tf` (2) with a change in `main.tf`? Do you see any changes in Terraform's output? Why? Can you think of examples where Terraform needs to delete parts of the infrastructure to be able to reconfigure it?
 
+
 ```
-//TODO
+- If we try to reapply the plan, we receive a message: "No changes. Your infrastructure matches the configuration."
+- When changes are applied, Terraform will either attempt to update the resource in place or recreate it, depending on which attribute has changed.
 ```
 
 * Explain what you would need to do to manage multiple instances.
 
 ```
-//TODO
+You can add a `count` attribute to the `google_compute_instance` resource.
 ```
 
 * Take a screenshot of the Google Cloud Console showing your Google Compute instance and put it in the report.
 
-```
-//TODO
-```
+[Google Compute instance](img/image.png)
 
 * Deliver a folder "terraform" with your configuration.
