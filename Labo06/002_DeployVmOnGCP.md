@@ -69,7 +69,6 @@ You can now initialize the Terraform state:
     cd terraform
     terraform init
 
-//TODO
 [OUTPUT]
 ```bash
 Initializing the backend...
@@ -100,7 +99,6 @@ commands will detect it and remind you to do so if necessary.
     
 * What files were created in the `terraform` directory? Make sure to look also at hidden files and directories (`ls -a`).
 
-//TODO
 [OUTPUT]
 ```bash
 .                   .DS_Store           .terraform.lock.hcl main.tf             terraform.tfvars
@@ -122,7 +120,6 @@ commands will detect it and remind you to do so if necessary.
 terraform validate
 ```
 
-//TODO
 [OUTPUT]
 ```bash
 Success! The configuration is valid.
@@ -142,7 +139,6 @@ terraform plan -input=false -out=.terraform/plan.cache
 
 * Test access via ssh
 
-//TODO
 [INPUT]
 ```bash
 ssh user@34.65.241.126 -i ../credentials/labgce-ssh-key

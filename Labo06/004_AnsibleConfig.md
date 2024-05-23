@@ -82,7 +82,6 @@ Deliverables:
 
 - What happens if the infrastructure is deleted and then recreated with Terraform? What needs to be updated to access the infrastructure again?
 
-//TODO
 [INPUT]
 ```
 //terraform destroy command
@@ -90,10 +89,25 @@ Deliverables:
 
 [OUTPUT]
 ```
+google_compute_firewall.ssh: Destroying... [id=projects/calm-tendril-424213-e6/global/firewalls/allow-ssh]
+google_compute_firewall.http: Destroying... [id=projects/calm-tendril-424213-e6/global/firewalls/allow-http]
+google_compute_instance.default: Destroying... [id=projects/calm-tendril-424213-e6/zones/europe-west6-a/instances/instance]
+google_compute_firewall.ssh: Still destroying... [id=projects/calm-tendril-424213-e6/global/firewalls/allow-ssh, 10s elapsed]
+google_compute_firewall.http: Still destroying... [id=projects/calm-tendril-424213-e6/global/firewalls/allow-http, 10s elapsed]
+google_compute_instance.default: Still destroying... [id=projects/calm-tendril-424213-e6/zones/europe-west6-a/instances/instance, 10s elapsed]
+google_compute_firewall.http: Destruction complete after 12s
+google_compute_firewall.ssh: Destruction complete after 12s
+google_compute_instance.default: Still destroying... [id=projects/calm-tendril-424213-e6/zones/europe-west6-a/instances/instance, 20s elapsed]
+google_compute_instance.default: Still destroying... [id=projects/calm-tendril-424213-e6/zones/europe-west6-a/instances/instance, 30s elapsed]
+google_compute_instance.default: Still destroying... [id=projects/calm-tendril-424213-e6/zones/europe-west6-a/instances/instance, 40s elapsed]
+google_compute_instance.default: Still destroying... [id=projects/calm-tendril-424213-e6/zones/europe-west6-a/instances/instance, 50s elapsed]
+google_compute_instance.default: Destruction complete after 52s
+
+Destroy complete! Resources: 3 destroyed.
 ```
 
 Recreate the infra (no input/output needed)
 
 ```
-//TODO
+terraform apply -input=false
 ```
