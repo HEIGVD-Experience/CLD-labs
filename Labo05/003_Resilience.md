@@ -122,8 +122,9 @@ Document your observations in the lab report. Document any difficulties you face
 
 > // TODO
 
+
 ```````sh
-// TODO object descriptions
+// TODO autoscaling description
 ```````
 
 ```yaml
@@ -227,3 +228,4 @@ spec:
           requests:
             cpu: 10m
 ```
+
