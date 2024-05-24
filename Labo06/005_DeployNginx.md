@@ -26,9 +26,15 @@ You should now be able to ping the webservers group:
 ansible webservers -m ping
 ```
 
-//TODO
 [OUTPUT]
 ```json
+gce_instance | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
 ```
 
 The output should be the same as before.
@@ -109,21 +115,38 @@ address of the managed server. You should see the homepage showing
 //TODO
 [INPUT]
 ```bash
-curl <yourIP>
+curl 34.65.241.126
 ```
 
 [OUTPUT]
 ```html
+<html>
+    <head>
+    <title>Welcome to ansible</title> </head>
+    <body>
+    <h1>nginx, configured by Ansible</h1>
+    <p>If you can see this, Ansible successfully installed nginx.</p>
+    <p>Ansible managed</p>
+    <p>Some facts Ansible gathered about this machine:
+    <table>
+        <tr><td>OS family:</td><td>Debian</td></tr>
+        <tr><td>Distribution:</td><td>Ubuntu</td></tr>
+        <tr><td>Distribution version:</td><td>20.04</td></tr>
+    </table>
+    </p>
+    </body>
+</html>%
 ```
 
 Deliverables:
 
 - Explain the usage of each file and its contents, add comments to the different blocks if needed (we must ensure that you understood what you have done). Link to the online documentation. Link to the online documentation.
 
-//TODO
-|FileName|Explanation|
-|:--|:--|
-||||
+ FileName    | Explanation                                                                                     |
+| :---------- | :---------------------------------------------------------------------------------------------- |
+| hosts       | Contains the list of hosts that Ansible can manage. This file defines which machines Ansible will connect to and manage. For more information, refer to the [Ansible Inventory documentation](https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html). |
+| ansible.cfg | Contains a list of configuration properties for Ansible. This file customizes the behavior of Ansible commands and sets various configuration options. Refer to the [Ansible Configuration Settings documentation](https://docs.ansible.com/ansible/latest/reference_appendices/config.html). |
+| playbooks   | Contains the playbooks, along with the files and templates used by the playbooks. Playbooks are YAML files that define the tasks and workflows to be executed on the managed hosts. Refer to the [Ansible Playbooks documentation](https://docs.ansible.com/ansible/latest/user_guide/playbooks.html). |
 
 
 * Deliver a folder "ansible" with your configuration.
